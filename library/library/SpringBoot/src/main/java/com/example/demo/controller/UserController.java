@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -10,68 +10,90 @@ import com.example.demo.commom.Result;
 import com.example.demo.domain.entity.User;
 import com.example.demo.mapper.UserMapper;
 import org.springframework.web.bind.annotation.*;
-import com.example.demo.utils.JwtUtils;
+
 import javax.annotation.Resource;
 import java.util.List;
-/**
- * @author mAg1cart
- * @date 2024/6/21 19:58
- * @description
- * @package com.example.demo.controller
- */
+
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
     @Resource
     UserMapper userMapper;
+
+    //注册
     @PostMapping("/register")
     public Result<?> register(@RequestBody User user){
         User res = userMapper.selectOne(Wrappers.<User>lambdaQuery().eq(User::getUsername,user.getUsername()));
         if(res != null)
         {
             return Result.error("-1","用户名已重复");
+        }else {
+            //2.加密密码
+            String salt = com.example.demo.utils.SHA3Util.generateRandomSalt(16);
+            String pwd = com.example.demo.utils.SHA3Util.hashWithSalt(user.getPassword(), salt);
+            user.setUsername(user.getUsername());
+            user.setPassword(pwd);
+            user.setSalt(salt);
+            //3.保存用户
+            userMapper.insert(user);                                                                                           ;
+            return Result.success();
         }
-        userMapper.insert(user)                                                                                           ;
-        return Result.success();
     }
-    @CrossOrigin
+
+    //登录
+//    @CrossOrigin
     @PostMapping("/login")
-    public Result<?> login(@RequestBody User user){
-        User res = userMapper.selectOne(Wrappers.<User>lambdaQuery().eq(User::getUsername,user.getUsername()).eq(User::getPassword,user.getPassword()));
-        if(res == null)
-        {
-            return Result.error("-1","用户名或密码错误");
+    public Result<?> login(@RequestBody User user) {
+        // 1.判断用户名是否存在
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("username", user.getUsername());
+        User res = userMapper.selectOne(queryWrapper);
+        if (res == null) {
+            return Result.error("-1", "用户名不存在");
+        } else {
+            //2.判断密码是否正确
+            String salt = res.getSalt();
+            String pwd = com.example.demo.utils.SHA3Util.hashWithSalt(user.getPassword(), salt);
+            if (res.getPassword().equals(pwd)) {
+                //生成token
+                String token = com.example.demo.utils.JwtUtil.createUserToken(res.getId(), res.getUsername(), salt);
+                //返回token
+                res.setToken(token);
+                LoginUser loginuser = new LoginUser();
+                loginuser.addVisitCount();
+                return Result.success(res);
+            }
         }
-        String token = JwtUtils.genToken(res);
-        res.setToken(token);
-        LoginUser loginuser = new LoginUser();
-        loginuser.addVisitCount();
-        return Result.success(res);
+        return null;
     }
-    @PostMapping
-    public Result<?> save(@RequestBody User user){
-        if(user.getPassword() == null){
-            user.setPassword("abc123456");
-        }
-        userMapper.insert(user);
-        return Result.success();
-    }
-    @PutMapping("/password")
-    public  Result<?> update( @RequestParam Integer id,
-                              @RequestParam String password2){
-        UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
-        updateWrapper.eq("id",id);
-        User user = new User();
-        user.setPassword(password2);
-        userMapper.update(user,updateWrapper);
-        return Result.success();
-    }
+
+    //获取用户信息
+//    @PostMapping
+//    public Result<?> save(@RequestBody User user){
+//        if(user.getPassword() == null){
+//            user.setPassword("abc123456");
+//        }
+//        userMapper.insert(user);
+//        return Result.success();
+//    }
+    //修改密码
+//    @PutMapping("/password")
+//    public  Result<?> update( @RequestParam Integer id, @RequestParam String password2){
+//        UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
+//        updateWrapper.eq("id",id);
+//        User user = new User();
+//        user.setPassword(password2);
+//        userMapper.update(user,updateWrapper);
+//        return Result.success();
+//    }
+    //修改用户信息
     @PutMapping
     public  Result<?> password(@RequestBody User user){
         userMapper.updateById(user);
         return Result.success();
     }
+    //删除用户
     @PostMapping("/deleteBatch")
     public  Result<?> deleteBatch(@RequestBody List<Integer> ids){
         userMapper.deleteBatchIds(ids);
@@ -82,6 +104,7 @@ public class UserController {
         userMapper.deleteById(id);
         return Result.success();
     }
+    //分页查询
     @GetMapping
     public Result<?> findPage(@RequestParam(defaultValue = "1") Integer pageNum,
                               @RequestParam(defaultValue = "10") Integer pageSize,
@@ -94,6 +117,7 @@ public class UserController {
         Page<User> userPage =userMapper.selectPage(new Page<>(pageNum,pageSize), wrappers);
         return Result.success(userPage);
     }
+    //分页查询
     @GetMapping("/usersearch")
     public Result<?> findPage2(@RequestParam(defaultValue = "1") Integer pageNum,
                               @RequestParam(defaultValue = "10") Integer pageSize,

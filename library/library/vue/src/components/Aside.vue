@@ -17,26 +17,14 @@
       </svg>
       <span>展示板</span>
     </el-menu-item>
-    <el-sub-menu index="2" text-color="#fff">
-      <template #title>
-        <svg class="icon" aria-hidden="true">
-          <use xlink:href="#icon-mingpian "></use>
-        </svg>
-        <span>个人信息</span>
-      </template>
-      <el-menu-item index="/person" style="font-color: white">
-        <svg class="icon" aria-hidden="true">
-          <use xlink:href="#icon-a-bianji1 "></use>
-        </svg>
-        <span>修改个人信息</span>
-      </el-menu-item>
-      <el-menu-item index="/password">
-        <svg class="icon" aria-hidden="true">
-          <use xlink:href="#icon-mima "></use>
-        </svg>
-        <span>修改密码</span>
-      </el-menu-item>
-    </el-sub-menu>
+
+<!--    改-->
+    <el-menu-item index="/person" style="font-color: white">
+      <svg class="icon" aria-hidden="true">
+        <use xlink:href="#icon-a-bianji1 "></use>
+      </svg>
+      <span>个人信息</span>
+    </el-menu-item>
     <el-menu-item index="/user" v-if="user.role == 1">
       <svg class="icon" aria-hidden="true">
         <use xlink:href="#iconreader "></use>
@@ -103,5 +91,4 @@ export default {
   padding-top: 5px;
   padding-right: 10px;
 }
-
 </style>

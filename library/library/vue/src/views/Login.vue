@@ -7,13 +7,10 @@
   "
       class="login-wrap"
 >
-    <div style="display: flex; background-color: white; width: 50%; border-radius: 5px; overflow: hidden">
-      <div style="flex: 1">
-        <img src="@/assets/9.jpg" alt="" style="width: 400px;height: 400px">
-      </div>
+    <div style="display: flex; background-color: white; width: 30%;height: 50%; border-radius: 5px; overflow: hidden">
       <div style="flex: 1; display: flex; align-items: center; justify-content: center">
         <el-form :model="form" style="width: 80%" :rules="rules" ref="form">
-          <div style="font-size: 20px; font-weight: bold; text-align: center; margin-bottom: 20px">欢迎登录图书管理系统</div>
+          <div style="font-size: 20px; font-weight: bold; text-align: center; margin-bottom: 40px">欢迎登录图书管理系统</div>
           <el-form-item prop="username">
                     <el-input v-model="form.username" size="medium" placeholder="请输入账号"  clearable>
                     <template #prefix>
@@ -134,8 +131,8 @@ export default {
   position: relative;
   width: 100%;
   height: 100%;
-  background: #2186dc;
-  background-image: url("../assets/img/bg.png")!important;
+  //background: #2186dc;
+  background-image: url("../assets/img/bg2.dd39329b.svg")!important;
 
   background-size: cover;
   background-repeat: no-repeat;

@@ -1,10 +1,10 @@
 <!-- 注册 -->
 <template>
-  <div style="height: 100vh; display: flex; align-items: center; justify-content: center;  background-color: beige;">
-    <div style="display: flex; background-color: white; width: 50%; border-radius: 5px; overflow: hidden">
-      <div style="flex: 1">
-        <img src="@/assets/9.jpg" alt="" style="width: 100%">
-      </div>
+  <div class="login-wrap" style="height: 100vh; display: flex; align-items: center; justify-content: center;  background-color: white;">
+    <div style="display: flex; background-color: white; width: 30%; border-radius: 5px; overflow: hidden">
+<!--      <div style="flex: 1">-->
+<!--        <img src="@/assets/img/down.jpeg" alt="" style="width: 100%">-->
+<!--      </div>-->
       <div style="flex: 1; display: flex; align-items: center; justify-content: center">
         <el-form :model="form" style="width: 80%" :rules="rules" ref="form">
           <div style="font-size: 20px; font-weight: bold; text-align: center; margin-bottom: 15px">用户注册</div>
@@ -168,5 +168,16 @@ export default {
 </script>
 
 <style scoped>
+.login-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+//background: #2186dc;
+  background-image: url("../assets/img/bg2.dd39329b.svg")!important;
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 
 </style>

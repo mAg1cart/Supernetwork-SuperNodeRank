@@ -24,11 +24,6 @@ const routes = [
         component: () => import("@/views/Person")
       },
       {
-        path: 'password',
-        name: 'Password',
-        component: () => import("@/views/Password")
-      },
-      {
         path: 'lendrecord',
         name: 'LendRecord',
         component: () => import("@/views/LendRecord")
