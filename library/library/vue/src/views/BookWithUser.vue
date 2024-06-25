@@ -15,7 +15,7 @@
           </el-input>
         </el-form-item >
         <el-form-item label="读者" v-if="user.role == 1">
-          <el-input v-model="search3" placeholder="请输入读者昵称"  clearable>
+          <el-input v-model="search3" placeholder="请输入读者ID"  clearable>
             <template #prefix><el-icon class="el-input__icon"><search /></el-icon></template>
           </el-input>
         </el-form-item >
@@ -150,6 +150,7 @@ export default {
         }).then(res =>{
           console.log(res)
           this.tableData = res.data.records
+
           this.total = res.data.total
         })
       }
