@@ -109,7 +109,7 @@ export default {
           }
 
           request.post("user/login", this.form).then(res => {
-            if (res.code == 0) {
+            if (res.code == 200) {
               ElMessage.success("登录成功")
               sessionStorage.setItem("user",JSON.stringify(res.data))//缓存用户信息
               this.$router.push("/dashboard")

@@ -44,7 +44,7 @@ export default {
     this.circleTimer()
 
     request.get("/dashboard").then(res=>{
-      if(res.code == 0)
+      if(res.code == 200)
       {
 
         this.cards[0].data = res.data.lendRecordCount

@@ -128,7 +128,7 @@ export default {
       }
       //  一个小优化，直接发送这个数组，而不是一个一个的提交删除
       request.post("bookwithuser/deleteRecords",this.forms).then(res =>{
-        if(res.code === '0'){
+        if(res.code === '200'){
           ElMessage.success("批量删除成功")
           this.load()
         }
@@ -179,7 +179,7 @@ export default {
       const form3 = JSON.parse(JSON.stringify(row))
       request.post("bookwithuser/deleteRecord",form3).then(res =>{
         console.log(res)
-        if(res.code == 0 ){
+        if(res.code == '200' ){
           ElMessage.success("删除成功")
         }
         else
@@ -194,7 +194,7 @@ export default {
       row.prolong = row.prolong -1;
       request.post("/bookwithuser",row).then(res =>{
         console.log(res)
-        if(res.code == 0){
+        if(res.code == '200'){
           ElMessage({
             message: '续借成功',
             type: 'success',
@@ -213,7 +213,7 @@ export default {
       // this.form?这是自动保存在form中的，虽然显示时没有使用，但是这个对象中是有它的
       request.post("/bookwithuser",this.form).then(res =>{
         console.log(res)
-        if(res.code == 0){
+        if(res.code == '200'){
           ElMessage({
             message: '修改信息成功',
             type: 'success',

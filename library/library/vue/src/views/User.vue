@@ -132,7 +132,7 @@ export default {
       }
       //  一个小优化，直接发送这个数组，而不是一个一个的提交删除
       request.post("/user/deleteBatch",this.ids).then(res =>{
-        if(res.code === '0'){
+        if(res.code === '200'){
           ElMessage.success("批量删除成功")
           this.load()
         }
@@ -167,7 +167,7 @@ export default {
     handleDelete(id){
       request.delete("user/" + id ).then(res =>{
         console.log(res)
-        if(res.code == 0 ){
+        if(res.code == 200 ){
           ElMessage.success("删除成功")
         }
         else

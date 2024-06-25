@@ -12,13 +12,15 @@ import lombok.Data;
 public class Result<T> {
     private String code;
     private String msg;
-    private Object data;
+    private T data;
 
-    /*public String getCode() {
+    public String getCode() {
         return code;
     }
 
     public void setCode(String code) {
+
+
         this.code = code;
     }
 
@@ -36,7 +38,7 @@ public class Result<T> {
 
     public void setData(T data) {
         this.data = data;
-    }*/
+    }
 
     public Result() {
     }
@@ -47,17 +49,24 @@ public class Result<T> {
 
     public static Result success() {
         Result result = new Result<>();
-        result.setCode("0");
+        result.setCode("200");
         result.setMsg("成功");
         return result;
     }
 
     public static <T> Result<T> success(T data) {
         Result<T> result = new Result<>(data);
-        result.setCode("0");
+        result.setCode("200");
         result.setMsg("成功");
         return result;
     }
+    public static <T> Result<T> success(String msg) {
+        Result<T> result = new Result<>();
+        result.setCode("200");
+        result.setMsg(msg);
+        return result;
+    }
+
 
     public static Result error(String code, String msg) {
         Result result = new Result();

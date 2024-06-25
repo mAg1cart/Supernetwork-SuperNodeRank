@@ -145,7 +145,7 @@ export default defineComponent({
         return
       }
       request.post("/LendRecord/deleteRecords",this.forms).then(res =>{
-        if(res.code === '0'){
+        if(res.code === '200'){
           ElMessage.success("批量删除成功")
           this.load()
         }
@@ -176,7 +176,7 @@ export default defineComponent({
       if(this.form.isbn){
         request.post("/LendRecord/update" , this.form).then(res => {
           console.log(res)
-          if (res.code == 0) {
+          if (res.code == 200) {
             ElMessage({
               message: '新增成功',
               type: 'success',
@@ -192,7 +192,7 @@ export default defineComponent({
       else {
         request.post("/LendRecord/update" , this.form).then(res => {
           console.log(res)
-          if (res.code == 0) {
+          if (res.code == 200) {
             ElMessage({
               message: '更新成功',
               type: 'success',
@@ -229,7 +229,7 @@ export default defineComponent({
       const form3 = JSON.parse(JSON.stringify(row))
       request.post("LendRecord/deleteRecord",form3).then(res =>{
         console.log(res)
-        if(res.code == 0 ){
+        if(res.code == 200 ){
           ElMessage.success("删除成功")
         }
         else
