@@ -45,7 +45,8 @@
             <el-button type="primary" style="width: 100%" @click="login">登 录</el-button>
           </el-form-item>
           <div style="display: flex">
-            <div style="flex: 1">还没有账号？请 <span style="color: #0f9876; cursor: pointer" @click="$router.push('/register')">注册</span></div>
+              <div style="flex: 1">还没有账号？请 <span style="color: #0f9876; cursor: pointer" @click="$router.push('/register')">注册</span></div>
+              <div style="flex: 1"><span style="color: #0f9876; cursor: pointer" @click="$router.push('/email')">邮箱登录</span></div>
           </div>
         </el-form>
       </div>
@@ -110,7 +111,10 @@ export default {
 
           request.post("user/login", this.form).then(res => {
             if (res.code == 200) {
-              ElMessage.success("登录成功")
+              //ElMessage.success("哈哈:"+res.data)
+              const token=res.data.token
+              localStorage.setItem("token", token)
+              //ElMessage.success(token)
               sessionStorage.setItem("user",JSON.stringify(res.data))//缓存用户信息
               this.$router.push("/dashboard")
             } else {

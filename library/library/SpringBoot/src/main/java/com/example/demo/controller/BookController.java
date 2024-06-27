@@ -34,7 +34,7 @@ public class BookController {
     @Resource
     BookMapper BookMapper;
 
-    @Autowired
+    @Resource
     BookWithUserMapper bookWithUserMapper;
 
     @Autowired

@@ -59,6 +59,11 @@
       <el-icon><grid /></el-icon>
       <span>借阅状态</span>
     </el-menu-item>
+
+    <el-menu-item index="/chat" v-if="user.role==2">
+      <i class="el-icon-chat-dot-round"></i>
+      <span>AI小助手</span>
+    </el-menu-item>
   </el-menu>
 
 </div>

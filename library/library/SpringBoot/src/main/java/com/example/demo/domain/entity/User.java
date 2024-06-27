@@ -17,7 +17,9 @@ public class User {
     @TableField(exist = false)  //表中没有token不会报错仍能编译运行
     private String token;
     private Integer role;
+    private String email;
     private String salt;
     @TableLogic(value="0",delval="1")//未删除0 删除1
     private String deleteFlag;
+
 }

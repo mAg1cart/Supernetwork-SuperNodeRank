@@ -18,7 +18,7 @@ import java.util.UUID;
 public class JwtUtil {
 
     //设置过期为1小时，单位：毫秒
-    private static final Long EXPIRES_TIME = 1 * 60 * 60 * 1000L;
+    private static final Long EXPIRES_TIME = 72 * 60 * 60 * 1000L;
 
 
     /**

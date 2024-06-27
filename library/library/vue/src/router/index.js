@@ -37,6 +37,11 @@ const routes = [
         path: 'bookwithuser',
         name: 'BookWithUser',
         component: () => import("@/views/BookWithUser")
+      },
+      {
+        path: 'chat',
+        name: 'chat',
+        component: () => import("@/views/Chat")
       }
     ]
   },
@@ -50,6 +55,11 @@ const routes = [
     name: 'Register',
     component: () => import("@/views/Register")
   },
+  {
+    path: '/email',
+    name: 'Email',
+    component: () => import("@/views/Email")
+  }
 
 
 ]
