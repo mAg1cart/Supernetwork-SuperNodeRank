@@ -68,28 +68,10 @@ public class UserController {
         return null;
     }
 
-    //获取用户信息
-//    @PostMapping
-//    public Result<?> save(@RequestBody User user){
-//        if(user.getPassword() == null){
-//            user.setPassword("abc123456");
-//        }
-//        userMapper.insert(user);
-//        return Result.success();
-//    }
-    //修改密码
-//    @PutMapping("/password")
-//    public  Result<?> update( @RequestParam Integer id, @RequestParam String password2){
-//        UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
-//        updateWrapper.eq("id",id);
-//        User user = new User();
-//        user.setPassword(password2);
-//        userMapper.update(user,updateWrapper);
-//        return Result.success();
-//    }
+
     //修改用户信息
     @PutMapping
-    public  Result<?> password(@RequestBody User user){
+    public  Result<?> update(@RequestBody User user){
         userMapper.updateById(user);
         return Result.success();
     }

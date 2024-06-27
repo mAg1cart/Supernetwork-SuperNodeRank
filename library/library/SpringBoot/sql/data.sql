@@ -161,11 +161,11 @@ CREATE TABLE `user`  (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1, 'admin', '9bc2a1e9747d67958ae5e642b9417cbf82f5adb4bffe0a5ee8bbd092110a8ec0', '691c53732d9b771d3ef149325bd1549e', NULL, NULL, NULL, NULL, 1, '1', 0);
-INSERT INTO `user` VALUES (2, 'iphone', '23b000344256b92af86ccf614d83877cfbc8e964d9bb2af14641060901e4a7b9', '3370dffc45c0151ab55e1cf7856e6ebd', NULL, NULL, NULL, NULL, 2, '1', 0);
-INSERT INTO `user` VALUES (3, 'huawei', '744bc62245f45e7e1331597a1c39e57eef35ead7e5fc77639a78b8e54933129f', 'cd40044b23b2bd6817d0554f831d7847', NULL, NULL, NULL, NULL, 2, '1', 0);
-INSERT INTO `user` VALUES (4, 'realme', '13e66c8e7b2fec108da072000bd3b8e3ee5232f50128086fc16eea1f69a0fd08', '3279870ca6e92742b6ceb58c6e03ac80', NULL, NULL, NULL, NULL, 2, '1', 0);
-INSERT INTO `user` VALUES (5, 'xiaomi', 'f29ea5fe6876652ebab324bf2b846bfeead1f043186a106c2f8b626af485eb96', '617c7c1df7e5010a62e6e256acd83863', NULL, NULL, NULL, NULL, 2, '1', 0);
-INSERT INTO `user` VALUES (33, 'acer', 'b16b78e1ea93c68c24598119bee60a19c0945e19f650e96bb2eb644a592f2429', '7a2b5b160862449de38876409f0e3646', NULL, NULL, NULL, NULL, 2, '1', 0);
+INSERT INTO `user` VALUES (1, 'admin', '9bc2a1e9747d67958ae5e642b9417cbf82f5adb4bffe0a5ee8bbd092110a8ec0', '691c53732d9b771d3ef149325bd1549e', 'hh', '1007', '女', '蚌埠', 1, '1', 0);
+INSERT INTO `user` VALUES (2, 'iphone', '23b000344256b92af86ccf614d83877cfbc8e964d9bb2af14641060901e4a7b9', '3370dffc45c0151ab55e1cf7856e6ebd', '66', '1005', '男', '上海', 2, '1', 0);
+INSERT INTO `user` VALUES (3, 'huawei', '744bc62245f45e7e1331597a1c39e57eef35ead7e5fc77639a78b8e54933129f', 'cd40044b23b2bd6817d0554f831d7847', '哈哈', '1019', '男', '北京', 2, '1', 0);
+INSERT INTO `user` VALUES (4, 'realme', '13e66c8e7b2fec108da072000bd3b8e3ee5232f50128086fc16eea1f69a0fd08', '3279870ca6e92742b6ceb58c6e03ac80', '丁真', '1003', '男', '内江', 2, '1', 0);
+INSERT INTO `user` VALUES (5, 'xiaomi', 'f29ea5fe6876652ebab324bf2b846bfeead1f043186a106c2f8b626af485eb96', '617c7c1df7e5010a62e6e256acd83863', 'yy', '1000', '女', '成都', 2, '1', 0);
+INSERT INTO `user` VALUES (33, 'acer', 'b16b78e1ea93c68c24598119bee60a19c0945e19f650e96bb2eb644a592f2429', '7a2b5b160862449de38876409f0e3646', '321', '1002', '男', '理塘', 2, '1', 0);
 
 SET FOREIGN_KEY_CHECKS = 1;

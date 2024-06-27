@@ -11,6 +11,9 @@ public class JwtHanlerInterceptorConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new JwtHanlerInterceptor())
                 .addPathPatterns("/**")
-                .excludePathPatterns("/**");//拦截所有请求，排除登录请求
+                //.excludePathPatterns("/**");
+                .excludePathPatterns("/user/login")
+                .excludePathPatterns("/user/register");
+
     }
 }

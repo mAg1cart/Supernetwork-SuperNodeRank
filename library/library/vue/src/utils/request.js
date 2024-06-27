@@ -3,8 +3,9 @@ import router from "../router";
 
 const request = axios.create({
     baseURL: '/api',
-    timeout: 5000
+    timeout: 50000
 })
+
 
 // request 拦截器
 // 可以自请求发送前对请求做一些处理
@@ -44,7 +45,10 @@ request.interceptors.response.use(
         return Promise.reject(error)
     }
 )
-
+request.interceptors.request.use(function (config) {
+    config.headers['Authorization'] = localStorage.getItem('token')
+    return config
+})
 
 export default request
 
